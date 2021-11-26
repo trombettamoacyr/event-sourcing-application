@@ -1,20 +1,20 @@
 package application.domain.entity;
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.GeneratedValue;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @Document(collection = "event")
 public class EventEntity {
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private UUID id;
+    @MongoId
+    private UUID id = UUID.randomUUID();
 
+    @CreatedDate
+    private LocalDateTime createdAt;
 }
