@@ -1,2 +1,12 @@
 server:
     port: 8080
+
+spring:
+    data:
+        mongodb:
+            authentication-database: admin
+            username: mongodb
+            password: mongodb
+            database: event_sourcing_application
+            port: 27017
+            host: localhost
