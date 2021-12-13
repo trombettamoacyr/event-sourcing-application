@@ -10,7 +10,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongodb
       MONGO_INITDB_ROOT_PASSWORD: mongodb
     ports:
-      - 27017:27017
+      - "27017:27017"
     networks:
       - local
 
@@ -18,15 +18,15 @@ services:
     container_name: localstack
     image: localstack/localstack
     ports:
-      - 4566:4566
-      - 4565:4565
-      - 4571:4571
-      - 4576:4576
-      - 4575:4575
+      - "4566:4566"
+      - "4565:4565"
+      - "4571:4571"
+      - "4576:4576"
+      - "4575:4575"
     environment:
       - SERVICES=sns,sqs,s3
     volumes:
-      - "./localstack.sh"
+      - "../aws/localstack.sh:/docker-entrypoint-initaws.d/make-services.sh"
     networks:
       - local
 
