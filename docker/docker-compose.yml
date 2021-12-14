@@ -19,10 +19,6 @@ services:
     image: localstack/localstack
     ports:
       - "4566:4566"
-      - "4565:4565"
-      - "4571:4571"
-      - "4576:4576"
-      - "4575:4575"
     environment:
       - SERVICES=sns,sqs,s3
     volumes:
