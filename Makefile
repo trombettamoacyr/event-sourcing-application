@@ -11,3 +11,6 @@ docker-restart:
 		@make docker-stop
 		@make docker-clean
 		@make docker-start
+
+sns-new-event:
+		aws --endpoint-url=http://localhost:4566 sns publish --topic-arn arn:aws:sns:us-east-1:000000000000:event_created_topic --message 'Test Message!'
