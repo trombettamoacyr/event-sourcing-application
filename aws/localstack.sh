@@ -15,7 +15,7 @@ ARN_TOPIC_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sns create-to
 ## sqs
 QUEUE_EVENT_CREATED="event_created_queue"
 URL_QUEUE_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name "$QUEUE_EVENT_CREATED" --output text)
-ARN_QUEUE_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sqs get-queue-attributes --queue-url "$URL_QUEUE_EVENT_CREATED" | jq -r ".Attributes.QueueArn")
+ARN_QUEUE_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sqs get-queue-attributes --queue-url "$URL_QUEUE_EVENT_CREATED" --attribute-names QueueArn | jq -r ".Attributes.QueueArn")
 
 ## subscription
-aws --endpoint-url=http://localhost:4566 sns subscribe --topic-arn "$ARN_TOPIC_EVENT_CREATED" --protocol sqs --notification-endpoint "$ARN_QUEUE_EVENT_CREATED"
+aws --endpoint-url=http://localhost:4566 sns subscribe --topic-arn "$ARN_TOPIC_EVENT_CREATED" --protocol sqs --notification-endpoint "$ARN_QUEUE_EVENT_CREATED" --output text
