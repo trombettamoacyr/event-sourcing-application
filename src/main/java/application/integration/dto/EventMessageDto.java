@@ -9,6 +9,6 @@ import lombok.Data;
 public class EventMessage {
 
     @JsonProperty(value = "Message")
-    public String event;
+    public String eventJson;
 
 }
