@@ -1,8 +1,10 @@
 package application.domain.event;
 
-public class FetchUserDataEvent extends AbstractEvent<String> {
+import application.integration.dto.EventDto;
 
-    public FetchUserDataEvent(String userId, String payload) {
+public class FetchOwnerInformationEvent extends AbstractEvent<EventDto> {
+
+    public FetchOwnerInformationEvent(EventDto payload) {
         super(payload);
     }
 }
