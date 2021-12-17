@@ -8,10 +8,13 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EventDto {
 
-    @JsonProperty(value = "name")
-    private String name;
+    @JsonProperty(value = "car_id")
+    private String carId;
 
-    @JsonProperty(value = "teste")
-    private String teste;
+    @JsonProperty(value = "owner_id")
+    private String ownerId;
+
+    @JsonProperty(value = "image_id")
+    private String imageId;
 
 }
