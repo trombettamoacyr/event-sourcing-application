@@ -6,12 +6,11 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EventDto {
+public class CarDetailsDto {
 
-    @JsonProperty(value = "user_id")
-    private String userId;
+    @JsonProperty(value = "car")
+    private String brand;
 
-    @JsonProperty(value = "car_id")
-    private String carId;
-
+    @JsonProperty(value = "car_model")
+    private String model;
 }

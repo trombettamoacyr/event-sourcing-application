@@ -1,6 +1,6 @@
 package application.integration.listener;
 
-import application.domain.event.FetchOwnerInformationEvent;
+import application.domain.event.FetchUserDetailsEvent;
 import application.integration.dto.EventDto;
 import application.integration.dto.EventMessageDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,7 +23,7 @@ public class EventListener {
         var eventJson = objectMapper.readValue(message, EventMessageDto.class);
         var eventDto = objectMapper.readValue(eventJson.getEventJson(), EventDto.class);
 
-        var fetchOwnerInformationEvent = new FetchOwnerInformationEvent(eventDto);
+        var fetchOwnerInformationEvent = new FetchUserDetailsEvent(eventDto);
         applicationEventPublisher.publishEvent(fetchOwnerInformationEvent);
     }
 }
