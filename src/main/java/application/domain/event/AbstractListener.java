@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class AbstractListener<T extends AbstractEvent> {
 
     private static final String NEW_EVENT = "START EVENT {}";
+    private static final String SAVE_EVENT = "SAVE EVENT {}";
     private static final String ERROR_EVENT = "ERROR EVENT {}";
 
     @Autowired
@@ -28,6 +29,7 @@ public abstract class AbstractListener<T extends AbstractEvent> {
         try {
             handler(event);
             saveEvent(event);
+            log.info(SAVE_EVENT, eventName);
 
         } catch (Exception ex) {
             saveEventError(event, ex);

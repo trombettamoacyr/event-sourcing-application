@@ -29,4 +29,5 @@ public class EventEntity {
 
     @CreatedDate
     private LocalDateTime createdAt;
+
 }
