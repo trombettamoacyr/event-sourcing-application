@@ -14,13 +14,13 @@ public class RandomStatusCodeListener extends AbstractListener<RandomStatusCodeE
     @Override
     @EventListener
     public void listener(RandomStatusCodeEvent event) {
-        handler(event);
+        resolver(event);
     }
 
     @Override
     public void handler(RandomStatusCodeEvent event) {
 
-        var statusCode = randomStatusCodeClient.getStatusCode();
+        randomStatusCodeClient.getStatusCode();
 
     }
 }

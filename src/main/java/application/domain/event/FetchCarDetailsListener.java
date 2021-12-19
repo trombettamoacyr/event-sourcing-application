@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class FetchCarDetailsListener extends AbstractListener<FetchCarDetailsEvent> {
@@ -20,7 +18,7 @@ public class FetchCarDetailsListener extends AbstractListener<FetchCarDetailsEve
     @Override
     @EventListener
     public void listener(FetchCarDetailsEvent event) {
-        handler(event);
+        resolver(event);
     }
 
     @Override
