@@ -3,6 +3,8 @@ package application.configuration;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +32,15 @@ public class AwsConfiguration {
                 .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentialsProvider()))
                 .withClientConfiguration(new ClientConfiguration())
+                .build();
+    }
+
+    @Bean
+    public AmazonSNSClient snsClient() {
+        return (AmazonSNSClient) AmazonSNSClientBuilder
+                .standard()
+                .withRegion(region)
+                .withCredentials(new AWSStaticCredentialsProvider(awsCredentialsProvider()))
                 .build();
     }
 
