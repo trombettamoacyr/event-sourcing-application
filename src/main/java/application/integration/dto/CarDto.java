@@ -8,4 +8,5 @@ public class CarDto {
 
     @JsonProperty(value = "Car")
     private CarDetailsDto carDetailsDto;
+
 }
