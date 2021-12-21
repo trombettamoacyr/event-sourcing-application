@@ -35,6 +35,7 @@ public class AwsConfiguration {
                 .build();
     }
 
+    @Primary
     @Bean
     public AmazonSNSClient snsClient() {
         return (AmazonSNSClient) AmazonSNSClientBuilder

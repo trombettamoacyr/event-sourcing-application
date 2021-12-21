@@ -20,6 +20,8 @@ cloud:
       secret-key: SECRET_KEY
     sqs:
       event-created-queue-url: http://localhost:4566/000000000000/event_created_queue
+    sns:
+      event-finished-topic-arn: arn:aws:sns:us-east-1:000000000000:event_finished_topic
 
 integration:
   myfakeapi:
