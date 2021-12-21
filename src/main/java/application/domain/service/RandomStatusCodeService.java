@@ -6,9 +6,7 @@ import application.domain.repository.CarRepository;
 import application.domain.repository.UserRepository;
 import application.integration.client.RandomStatusCodeClient;
 import application.integration.dto.*;
-import com.amazonaws.services.sns.AmazonSNSClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,10 +21,7 @@ public class RandomStatusCodeService {
     @Autowired
     private CarRepository carRepository;
 
-    @Autowired
-    private AmazonSNSClient snsClient;
-
-    public void process(EventDto eventDto) {
+    public FinishedEventDto process(EventDto eventDto) {
         var userId = eventDto.getUserId();
         var carId = eventDto.getCarId();
 
@@ -35,9 +30,7 @@ public class RandomStatusCodeService {
         var user = userRepository.findById(userId).get();
         var car = carRepository.findById(carId).get();
 
-        var finishedEventDto = buildFinishedEvent(user, car, statusCode);
-
-        //TODO snsClient.publish()
+        return buildFinishedEvent(user, car, statusCode);
     }
 
     private FinishedEventDto buildFinishedEvent(UserEntity user, CarEntity car, String statusCode) {
