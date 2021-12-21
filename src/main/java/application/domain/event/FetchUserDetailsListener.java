@@ -24,9 +24,11 @@ public class FetchUserDetailsListener extends AbstractListener<FetchUserDetailsE
     @Override
     public void handler(FetchUserDetailsEvent event) {
         var payload = event.getPayload();
-        var userId = event.getPayload().getUserId();
+        var externalUserId = event.getPayload().getExternalUserId();
 
-        fetchUserDetailsService.process(userId);
+        var userEntityId = fetchUserDetailsService.process(externalUserId);
+
+        payload.setUserId(userEntityId);
 
         var fetchCarDetailsEvent = new FetchCarDetailsEvent(payload);
         applicationEventPublisher.publishEvent(fetchCarDetailsEvent);

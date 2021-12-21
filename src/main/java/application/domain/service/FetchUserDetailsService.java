@@ -15,7 +15,7 @@ public class FetchUserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public void process(String userId) {
+    public String process(String userId) {
 
         var userDetailsDto = myFakeApiClient.getUserDetails(userId);
         var name = userDetailsDto.getName();
@@ -26,6 +26,8 @@ public class FetchUserDetailsService {
                 .email(email)
                 .build();
 
-        userRepository.save(user);
+        var userEntity = userRepository.save(user);
+
+        return userEntity.getId();
     }
 }

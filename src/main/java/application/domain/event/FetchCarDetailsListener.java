@@ -24,9 +24,11 @@ public class FetchCarDetailsListener extends AbstractListener<FetchCarDetailsEve
     @Override
     public void handler(FetchCarDetailsEvent event) {
         var payload = event.getPayload();
-        var carId = payload.getCarId();
+        var externalCarId = payload.getExternalCarId();
 
-        fetchCarDetailsService.process(carId);
+        var carEntityId = fetchCarDetailsService.process(externalCarId);
+
+        payload.setCarId(carEntityId);
 
         var randomStatusCodeEvent = new RandomStatusCodeEvent(payload);
         applicationEventPublisher.publishEvent(randomStatusCodeEvent);

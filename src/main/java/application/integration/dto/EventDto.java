@@ -9,9 +9,13 @@ import lombok.Data;
 public class EventDto {
 
     @JsonProperty(value = "user_id")
-    private String userId;
+    private String externalUserId;
 
     @JsonProperty(value = "car_id")
+    private String externalCarId;
+
+    private String userId;
+
     private String carId;
 
 }

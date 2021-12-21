@@ -15,7 +15,7 @@ public class FetchCarDetailsService {
     @Autowired
     private CarRepository carRepository;
 
-    public void process(String carId) {
+    public String process(String carId) {
 
         var carDetailsDto = myFakeApiClient.getCarDetails(carId);
         var brand = carDetailsDto.getBrand();
@@ -26,6 +26,8 @@ public class FetchCarDetailsService {
                 .model(model)
                 .build();
 
-        carRepository.save(car);
+        var carEntity = carRepository.save(car);
+
+        return carEntity.getId();
     }
 }
