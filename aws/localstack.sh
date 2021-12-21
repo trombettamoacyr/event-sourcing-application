@@ -12,6 +12,9 @@ aws configure set region "us-east-1"
 TOPIC_EVENT_CREATED="event_created_topic"
 ARN_TOPIC_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sns create-topic --name "$TOPIC_EVENT_CREATED" --output text)
 
+TOPIC_EVENT_FINISHED="event_finished_topic"
+aws --endpoint-url=http://localhost:4566 sns create-topic --name "$TOPIC_EVENT_FINISHED" --output text
+
 ## sqs
 QUEUE_EVENT_CREATED="event_created_queue"
 URL_QUEUE_EVENT_CREATED=$(aws --endpoint-url=http://localhost:4566 sqs create-queue --queue-name "$QUEUE_EVENT_CREATED" --output text)
