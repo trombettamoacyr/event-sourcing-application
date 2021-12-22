@@ -15,12 +15,14 @@ cloud:
   aws:
     region:
       static: us-east-1
+      auto: false
     credentials:
       access-key: ID_KEY
       secret-key: SECRET_KEY
     sqs:
       event-created-queue-url: http://localhost:4566/000000000000/event_created_queue
     sns:
+      service-endpoint: http://localhost:4566
       event-finished-topic-arn: arn:aws:sns:us-east-1:000000000000:event_finished_topic
 
 integration:
@@ -28,4 +30,4 @@ integration:
     users-url: https://myfakeapi.com/api/users
     cars-url: https://myfakeapi.com/api/cars
   random-status-code:
-    url: https://random-status-code.herokuapp.com
+    url: https://myfakeapi.com/api/cars/1

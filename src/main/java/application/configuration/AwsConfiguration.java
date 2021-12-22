@@ -3,6 +3,7 @@ package application.configuration;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
@@ -15,14 +16,17 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class AwsConfiguration {
 
-    @Value("${cloud.aws.credentials.access-key")
+    @Value("${cloud.aws.credentials.access-key}")
     private String accessKey;
 
-    @Value("${cloud.aws.credentials.secret-key")
+    @Value("${cloud.aws.credentials.secret-key}")
     private String secretKey;
 
-    @Value("${cloud.aws.region.static")
+    @Value("${cloud.aws.region.static}")
     private String region;
+
+    @Value("${cloud.aws.sns.service-endpoint}")
+    private String serviceEndpoint;
 
     @Primary
     @Bean
@@ -40,12 +44,16 @@ public class AwsConfiguration {
     public AmazonSNSClient snsClient() {
         return (AmazonSNSClient) AmazonSNSClientBuilder
                 .standard()
-                .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentialsProvider()))
+                .withEndpointConfiguration(endpointConfiguration())
                 .build();
     }
 
     private BasicAWSCredentials awsCredentialsProvider() {
         return new BasicAWSCredentials(accessKey, secretKey);
+    }
+
+    private AwsClientBuilder.EndpointConfiguration endpointConfiguration() {
+        return new AwsClientBuilder.EndpointConfiguration(serviceEndpoint, region);
     }
 }
