@@ -20,7 +20,7 @@ services:
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=sns,sqs,s3
+      SERVICES: sqs, sns
     volumes:
       - "../aws/localstack.sh:/docker-entrypoint-initaws.d/make-services.sh"
     networks:
