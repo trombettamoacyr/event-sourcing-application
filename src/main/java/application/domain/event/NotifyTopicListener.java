@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotifyTopicListener extends AbstractListener<NotifyTopicEvent> {
 
-    @Value("${cloud.aws.sns.event-finished-topic-arn")
+    @Value("${cloud.aws.sns.event-finished-topic-arn}")
     private String topicArn;
 
     @Autowired
