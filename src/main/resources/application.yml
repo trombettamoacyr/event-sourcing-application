@@ -30,4 +30,4 @@ integration:
     users-url: https://myfakeapi.com/api/users
     cars-url: https://myfakeapi.com/api/cars
   random-status-code:
-    url: https://myfakeapi.com/api/cars/1
+    url: https://random-status-code.herokuapp.com
