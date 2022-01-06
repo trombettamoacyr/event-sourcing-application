@@ -47,12 +47,12 @@ In this application, the _EventEntity_ class has attributes to identify the even
 mvn install
 ```
 
-### Create localstack and mongoDB containers
+### Create localstack and mongoDB containers:
 ``` 
 make docker-start
 ``` 
 
-### Run application
+### Run application:
 ``` 
 spring-boot:run
 ``` 
@@ -63,7 +63,7 @@ make sns-new-event USER_ID=1 CAR_ID=1
 ``` 
 _USER_ID and CAR_ID range 1~999_
 
-### Stop containers
+### Stop containers:
 ``` 
 docker-stop
 ``` 
